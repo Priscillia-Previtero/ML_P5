@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form, Request
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 import re
@@ -38,15 +39,23 @@ def tokenize(text):
     tokens = [wnLemma.lemmatize(t) for t in tokens if t not in stopwords]
     return tokens
 
+templates = Jinja2Templates(directory="templates/")
 
-@app.put("/{text}")
-def update_item(text: str):
+@app.get("/")
+async def root(request:Request):
+    return templates.TemplateResponse('form.html', context={'request':request, 'tag':''})
+
+@app.post("/")
+def send_tag(request:Request, question:str = Form(...)):
+    if question == '':
+        return templates.TemplateResponse('form.html', context={'request':request, 'tag':"Please enter a question before to submit"})
     #Nettoyage
-    text = clean_input_from_html(text)
+    text = clean_input_from_html(question)
     #Tokenisation + normalisation
     tokens = tokenize(text)
 
     X_test = ' '.join([y for y in tokens]) 
     output = loaded_model.predict([X_test])
-    return output[0]
+    return templates.TemplateResponse('form.html', context={'request':request, 'tag':output[0]})
+
 
