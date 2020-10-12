@@ -1,9 +1,5 @@
 beautifulsoup4==4.9.1
 fastapi==0.61.1
-nltk @ file:///tmp/build/80754af9/nltk_1592496090529/work
-pandas @ file:///C:/ci/pandas_1592833613419/work
 pickleshare==0.7.5
 pydantic==1.6.1
-regex @ file:///C:/ci/regex_1593419644658/work
-scikit-learn @ file:///C:/ci/scikit-learn_1592853510272/work
 uvicorn==0.12.0
