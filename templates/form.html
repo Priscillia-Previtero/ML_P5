@@ -3,13 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Sample Form</title>
+	<style>
+	*, *:before, *:after{
+		box-sizing:border-box;
+	}
+	input[type=submit] {
+		border-radius:10px;
+		padding:10px;
+		box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+		margin:10px 0;	
+		width:80%;	
+		background-color:#3F51B5;
+		color:#fff;
+		font-size:20px;
+	}
+	textarea{
+		padding=15px;
+		border-radius:15px;
+		border:0;
+		box-shadow:4px 4px 10px;
+		resize:none;
+		minlength:1;
+		width:80%;
+		height:200px;
+		font-size:18px;
+	}
+	p{
+		font-size:30px;
+	}
+	</style>
 </head>
 <body>
+<center>
 <form method="post">
 	<h1>Entrez votre question ci-dessous </h1>
-	<input type="text" name="question" value="{{question}}"/>
-	<input type="submit">
+	<textarea name="question" value="{{question}}">{{question}}</textarea>
+	<div>
+		<input type="submit">
+	</div>
 </form>
 <p>Tags: {{tag}}</p>
+</center>
 </body>
 </html>

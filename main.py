@@ -56,6 +56,6 @@ def send_tag(request:Request, question:str = Form(...)):
 
     X_test = ' '.join([y for y in tokens]) 
     output = loaded_model.predict([X_test])
-    return templates.TemplateResponse('form.html', context={'request':request, 'tag':output[0]})
+    return templates.TemplateResponse('form.html', context={'request':request, 'question': question, 'tag':output[0]})
 
 
